@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--modifica note-->
+    <record id="view_note_partner_form" model="ir.ui.view">
+        <field name="name">view.note.partner</field>
+        <field name="model">note.note</field>
+        <field name="inherit_id" ref="note.view_note_note_form"/>
+        <field name="arch" type="xml">
+                <field name="tag_ids" position="after">
+                    <field name="partner_id" readonly="context.get('readonly_partner_id')"/>
+                </field>
+        </field>
+    </record>
+    <!--banban note-->
+    <record id="kanban_note_partner_inherited" model="ir.ui.view">
+        <field name="name">kanban.note.partner</field>
+        <field name="model">note.note</field>
+        <field name="inherit_id" ref="note.view_note_note_kanban"/>
+        <field name="arch" type="xml">
+            <xpath  expr="//kanban/templates/t/div" position="inside">
+                <div>
+                    <field name="partner_id"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+
+    <!--tree note-->
+    <record id="tree_note_partner_inherited" model="ir.ui.view">
+        <field name="name">tree.note.partner</field>
+        <field name="model">note.note</field>
+        <field name="inherit_id" ref="note.view_note_note_tree"/>
+        <field name="arch" type="xml">
+            <xpath  expr="//tree" position="inside">
+                    <field name="partner_id"/>
+            </xpath>
+        </field>
+    </record>
+
+<!--modifica contact-->
+    <record id="view_note_partner_form_2" model="ir.ui.view">
+        <field name="name">view.partner.form2</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath  expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button name="action_go_to_notes" icon="fa-file-o" type="object">
+                    <field name="notes_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <!--aggiungo tag ad action  per renderlo readonly-->
+
+
+
+<!--oe_kanban_quickcreate_textarea-->
+
+
+
+
+    <!--
+    <button class="oe_stat_button" type="object" name="schedule_meeting" icon="fa-calendar" context="{'partner_id': active_id, 'partner_name': name}" modifiers="{}" options="{}">
+				<field string="Meetings" name="meeting_count" widget="statinfo" modifiers="{'readonly':true}" id="meeting_count"/>
+			</button>
+    expr="//field[@name='opportunity_count']"
+    expr="//div[hasclass('oe_button_box')]"
+    <record id="view_note_partner_extend" model="ir.ui.view">
+        <field name="model">note.partner</field>
+        <field name="inherit_id" ref=
+      "note.note_views"/>
+        <field name="arch" type="xml">
+            <field name="tag_ids" position="after">
+                <field name="tag_ids" />
+            </field>
+        </field>
+
+    </record>-->
+
+
+
+</odoo>
+
+
+<!--
+	note.view_note_note_form
+<record id="view_form_book_extend" model="ir.ui.view">
+    <field name="name">Book: add Is Available?
+      field</field>
+    <field name="model">library.book</field>
+    <field name="inherit_id" ref=
+      "library_app.view_form_book"/>
+    <field name="arch" type="xml">
+      <field name="isbn" position="after">
+        <field name="is_available" />
+      </field>
+    </field>
+  </record>
+    -->
